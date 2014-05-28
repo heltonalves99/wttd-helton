@@ -41,3 +41,5 @@ local_settings.py
 
 .DS_Store
 collectstatic
+eventex/staticfiles
+.env
