@@ -33,6 +33,7 @@ INSTALLED_APPS = (
 
     # My apps
     'eventex.core',
+    'apps.subscriptions',
 )
 
 MIDDLEWARE_CLASSES = (

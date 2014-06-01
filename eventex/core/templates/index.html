@@ -19,10 +19,12 @@
 
     <!-- Custom Theme CSS -->
     <link href="{{ STATIC_URL }}css/grayscale.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    {% block content %}
 
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -44,7 +46,7 @@
                         <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Contact</a>
+                        <a href="#contact">Inscription</a>
                     </li>
                 </ul>
             </div>
@@ -85,10 +87,40 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 
-                <h2>Contact Start Bootstrap</h2>
+                <h2>Inscription</h2>
 
-                <p>For questions and more information contact.</p>
-                <p><a href="eventex@eventex.com.br">eventex@eventex.com.br</a> - Helton Alves</a></p>
+                <div class="col-md-12 contact-form">
+                    <form action="{% url 'create-inscription' %}" method="POST" class="form-horizontal" accept-charset="utf-8"> 
+                        <fieldset>
+
+                            {% csrf_token %}
+                            
+                            {% for obj in form %}
+
+                                <div class="form-group">
+                                    
+                                    <div class="col-md-12">
+                                        {{ obj }}
+                                    </div>
+
+                                    {% if obj.errors %}
+                                        {{ obj.errors }}
+                                    {% endif %}
+
+                                </div>
+
+                            {% endfor %}
+
+                            <div class="control-group">
+                                <div class="col-md-1">
+                                    <input class="btn btn-default" type="submit" value="Send">
+                                </div>
+                            </div>
+                        
+                        </fieldset>
+                    </form>
+
+                </div>
                 
                 <ul class="list-inline banner-social-buttons">
                     <li><a href="https://twitter.com/" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
@@ -102,6 +134,8 @@
             </div>
         </div>
     </section>
+
+    {% endblock content %}
 
     <!-- Core JavaScript Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

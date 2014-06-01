@@ -10,6 +10,8 @@ from core.views import Home
 urlpatterns = patterns('',
     url(r'^$', Home.as_view(), name='home'),
 
+    url(r'^inscription/', include('apps.subscriptions.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 
 )
